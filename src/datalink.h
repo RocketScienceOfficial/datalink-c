@@ -1,6 +1,10 @@
 #ifndef _DATALINK__H
 #define _DATALINK__H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 
 #define DATALINK_MAGIC_SERIAL 0x7E
@@ -23,6 +27,7 @@ typedef enum datalink_message_type
     DATALINK_MESSAGE_IGN_REQUEST_TEST,
     DATALINK_MESSAGE_IGN_FINISH_TEST,
     DATALINK_MESSAGE_CONFIG_GET,
+    DATALINK_MESSAGE_CONFIG_GET_ACK,
     DATALINK_MESSAGE_CONFIG_SET,
     DATALINK_MESSAGE_CONFIG_SET_ACK,
     DATALINK_MESSAGE_RADIO_MODULE_TX_DONE,
@@ -93,8 +98,8 @@ typedef struct __attribute__((__packed__)) datalink_frame_telemetry_data_gcs
     float qy;
     float qz;
     uint16_t velocity;
-    uint8_t batVolts10;
-    uint8_t batPercentage;
+    uint8_t batteryVoltage10;
+    uint8_t batteryPercentage;
     double lat;
     double lon;
     uint16_t alt;
@@ -191,5 +196,9 @@ int datalink_serialize_frame_serial(const datalink_frame_structure_serial_t *fra
 int datalink_serialize_frame_radio(const datalink_frame_structure_radio_t *frame, uint8_t *buffer, int *len);
 int datalink_deserialize_frame_serial(datalink_frame_structure_serial_t *frame, const uint8_t *buffer, int len);
 int datalink_deserialize_frame_radio(datalink_frame_structure_radio_t *frame, const uint8_t *buffer, int len);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
