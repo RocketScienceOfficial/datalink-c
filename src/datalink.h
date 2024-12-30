@@ -16,6 +16,9 @@ typedef enum datalink_message_type
     DATALINK_MESSAGE_TELEMETRY_DATA_OBC_WITH_RESPONSE,
     DATALINK_MESSAGE_TELEMETRY_DATA_GCS,
     DATALINK_MESSAGE_TELEMETRY_RESPONSE,
+    DATALINK_MESSAGE_OBC_APP_EKF_TRANSMIT_START,
+    DATALINK_MESSAGE_OBC_APP_EKF_TRANSMIT_END,
+    DATALINK_MESSAGE_OBC_APP_EKF_DATA,
     DATALINK_MESSAGE_DATA_SAVED_CHUNK,
     DATALINK_MESSAGE_DATA_SAVED_SIZE,
     DATALINK_MESSAGE_DATA_REQUEST_READ,
@@ -114,6 +117,20 @@ typedef struct __attribute__((__packed__)) datalink_frame_telemetry_response
 {
     uint8_t controlFlags;
 } datalink_frame_telemetry_response_t;
+
+typedef struct __attribute__((__packed__)) datalink_frame_obc_app_ekf_data
+{
+    float qw;
+    float qx;
+    float qy;
+    float qz;
+    float velocityN;
+    float velocityE;
+    float velocityD;
+    float positionN;
+    float positionE;
+    float positionD;
+} datalink_frame_obc_app_ekf_data_t;
 
 typedef struct __attribute__((__packed__)) datalink_frame_data_saved_chunk
 {
