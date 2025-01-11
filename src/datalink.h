@@ -124,12 +124,15 @@ typedef struct __attribute__((__packed__)) datalink_frame_obc_app_ekf_data
     float qx;
     float qy;
     float qz;
-    float velocityN;
-    float velocityE;
-    float velocityD;
     float positionN;
     float positionE;
     float positionD;
+    float velocityN;
+    float velocityE;
+    float velocityD;
+    float accelerationN;
+    float accelerationE;
+    float accelerationD;
 } datalink_frame_obc_app_ekf_data_t;
 
 typedef struct __attribute__((__packed__)) datalink_frame_data_saved_chunk
