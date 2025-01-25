@@ -137,27 +137,20 @@ typedef struct __attribute__((__packed__)) datalink_frame_obc_app_ekf_data
 
 typedef struct __attribute__((__packed__)) datalink_frame_data_saved_chunk
 {
-    uint32_t time;
-    float acc1x;
-    float acc1y;
-    float acc1z;
-    float acc2x;
-    float acc2y;
-    float acc2z;
-    float acc3x;
-    float acc3y;
-    float acc3z;
-    float gyro1x;
-    float gyro1y;
-    float gyro1z;
-    float gyro2x;
-    float gyro2y;
-    float gyro2z;
-    float mag1x;
-    float mag1y;
-    float mag1z;
-    int press;
-    float kalmanHeight;
+    uint16_t dt;
+    float accX;
+    float accY;
+    float accZ;
+    float velN;
+    float velE;
+    float velD;
+    float posN;
+    float posE;
+    float posD;
+    float qw;
+    float qx;
+    float qy;
+    float qz;
     double lat;
     double lon;
     double alt;
