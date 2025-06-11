@@ -178,11 +178,13 @@ typedef struct __attribute__((__packed__)) datalink_frame_ign_request_test
 typedef struct __attribute__((__packed__)) datalink_frame_config_get
 {
     uint16_t mainHeight;
+    uint8_t malfunctionSpeed;
 } datalink_frame_config_get_t;
 
 typedef struct __attribute__((__packed__)) datalink_frame_config_set
 {
     uint16_t mainHeight;
+    uint8_t malfunctionSpeed;
 } datalink_frame_config_set_t;
 
 typedef struct datalink_frame_structure_serial
