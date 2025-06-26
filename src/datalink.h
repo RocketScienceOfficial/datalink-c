@@ -160,6 +160,32 @@ typedef struct __attribute__((__packed__)) datalink_frame_data_saved_chunk
     uint8_t gpsData;
 } datalink_frame_data_saved_chunk_t;
 
+typedef struct __attribute__((__packed__)) datalink_frame_data_acs_saved_chunk
+{
+    uint16_t dt;
+    float accX;
+    float accY;
+    float accZ;
+    float velN;
+    float velE;
+    float velD;
+    float posN;
+    float posE;
+    float posD;
+    float qw;
+    float qx;
+    float qy;
+    float qz;
+    double lat;
+    double lon;
+    double alt;
+    float angleSetpoint;
+    float finAngle;
+    uint8_t smState;
+    uint8_t batVolts10;
+    uint8_t gpsData;
+} datalink_frame_data_acs_saved_chunk_t;
+
 typedef struct __attribute__((__packed__)) datalink_frame_data_saved_size
 {
     uint32_t size;
