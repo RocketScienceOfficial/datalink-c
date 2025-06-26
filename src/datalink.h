@@ -180,7 +180,7 @@ typedef struct __attribute__((__packed__)) datalink_frame_data_acs_saved_chunk
     double lon;
     double alt;
     uint8_t angleSetpoint;
-    uint8_t finAngle10;
+    int8_t servoAngle10;
     uint8_t smState;
     uint8_t batVolts10;
     uint8_t gpsData;
