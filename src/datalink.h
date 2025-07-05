@@ -86,7 +86,7 @@ typedef struct __attribute__((__packed__)) datalink_frame_telemetry_data_obc
     float qy;
     float qz;
     uint16_t velocity;
-    uint8_t batteryVoltage10;
+    uint16_t batteryVoltage100;
     uint8_t batteryPercentage;
     double lat;
     double lon;
@@ -102,7 +102,7 @@ typedef struct __attribute__((__packed__)) datalink_frame_telemetry_data_gcs
     float qy;
     float qz;
     uint16_t velocity;
-    uint8_t batteryVoltage10;
+    uint16_t batteryVoltage100;
     uint8_t batteryPercentage;
     double lat;
     double lon;
@@ -155,7 +155,7 @@ typedef struct __attribute__((__packed__)) datalink_frame_data_saved_chunk
     double lon;
     double alt;
     uint8_t smState;
-    uint8_t batVolts10;
+    uint16_t batteryVoltage100;
     uint8_t ignFlags;
     uint8_t gpsData;
 } datalink_frame_data_saved_chunk_t;
@@ -182,7 +182,7 @@ typedef struct __attribute__((__packed__)) datalink_frame_data_acs_saved_chunk
     uint8_t angleSetpoint;
     int8_t servoAngle10;
     uint8_t smState;
-    uint8_t batVolts10;
+    uint16_t batteryVoltage100;
     uint8_t gpsData;
 } datalink_frame_data_acs_saved_chunk_t;
 
