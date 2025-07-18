@@ -85,7 +85,7 @@ typedef struct __attribute__((__packed__)) datalink_frame_telemetry_data_obc
     float qx;
     float qy;
     float qz;
-    uint16_t velocity;
+    uint16_t velocity_kmh;
     uint16_t batteryVoltage100;
     uint8_t batteryPercentage;
     double lat;
@@ -101,7 +101,7 @@ typedef struct __attribute__((__packed__)) datalink_frame_telemetry_data_gcs
     float qx;
     float qy;
     float qz;
-    uint16_t velocity;
+    uint16_t velocity_kmh;
     uint16_t batteryVoltage100;
     uint8_t batteryPercentage;
     double lat;
