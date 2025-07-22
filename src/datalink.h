@@ -154,6 +154,7 @@ typedef struct __attribute__((__packed__)) datalink_frame_data_saved_chunk
     double lat;
     double lon;
     double alt;
+    uint16_t pressure;
     uint8_t smState;
     uint16_t batteryVoltage100;
     uint8_t ignFlags;
@@ -179,6 +180,7 @@ typedef struct __attribute__((__packed__)) datalink_frame_data_acs_saved_chunk
     double lat;
     double lon;
     double alt;
+    uint16_t pressure;
     int16_t angleSetpoint10;
     int16_t pidRoll10;
     int8_t servoAngle10;
