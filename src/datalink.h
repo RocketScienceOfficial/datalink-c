@@ -81,36 +81,42 @@ typedef enum datalink_flags_ign
 
 typedef struct __attribute__((__packed__)) datalink_frame_telemetry_data_obc
 {
-    float qw;
-    float qx;
-    float qy;
-    float qz;
+    int16_t qw;
+    int16_t qx;
+    int16_t qy;
+    int16_t qz;
     uint16_t velocity_kmh;
     uint16_t batteryVoltage100;
     uint8_t batteryPercentage;
-    double lat;
-    double lon;
+    int lat;
+    int lon;
     uint16_t alt;
+    uint8_t gpsData;
     uint8_t state;
     uint8_t controlFlags;
 } datalink_frame_telemetry_data_obc_t;
 
 typedef struct __attribute__((__packed__)) datalink_frame_telemetry_data_gcs
 {
-    float qw;
-    float qx;
-    float qy;
-    float qz;
+    int16_t qw;
+    int16_t qx;
+    int16_t qy;
+    int16_t qz;
     uint16_t velocity_kmh;
     uint16_t batteryVoltage100;
     uint8_t batteryPercentage;
-    double lat;
-    double lon;
+    int lat;
+    int lon;
     uint16_t alt;
+    int gcsLat;
+    int gcsLon;
+    uint8_t gpsData;
     uint8_t state;
     uint8_t controlFlags;
     uint8_t signalStrengthNeg;
     uint8_t packetLossPercentage;
+    uint16_t packetsReceived;
+    uint16_t packetsTransmitted;
 } datalink_frame_telemetry_data_gcs_t;
 
 typedef struct __attribute__((__packed__)) datalink_frame_telemetry_response
