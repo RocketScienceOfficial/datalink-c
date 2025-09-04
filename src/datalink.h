@@ -189,7 +189,7 @@ typedef struct __attribute__((__packed__)) datalink_frame_data_acs_saved_chunk
     uint16_t pressure;
     int16_t angleSetpoint10;
     int16_t pidRoll10;
-    int8_t servoAngle10;
+    int8_t pidOutputAngle10;
     uint8_t smState;
     uint16_t batteryVoltage100;
     uint8_t gpsData;
