@@ -73,10 +73,10 @@ typedef enum datalink_flags_ign
     DATALINK_FLAGS_IGN_2_CONT = 1 << 1,
     DATALINK_FLAGS_IGN_3_CONT = 1 << 2,
     DATALINK_FLAGS_IGN_4_CONT = 1 << 3,
-    DATALINK_FLAGS_IGN_1_STATE = 1 << 4,
-    DATALINK_FLAGS_IGN_2_STATE = 1 << 5,
-    DATALINK_FLAGS_IGN_3_STATE = 1 << 6,
-    DATALINK_FLAGS_IGN_4_STATE = 1 << 7,
+    DATALINK_FLAGS_IGN_1_FIRED = 1 << 4,
+    DATALINK_FLAGS_IGN_2_FIRED = 1 << 5,
+    DATALINK_FLAGS_IGN_3_FIRED = 1 << 6,
+    DATALINK_FLAGS_IGN_4_FIRED = 1 << 7,
 } datalink_flags_ign_t;
 
 typedef struct __attribute__((__packed__)) datalink_frame_telemetry_data_obc
