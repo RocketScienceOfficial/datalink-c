@@ -144,9 +144,23 @@ typedef struct __attribute__((__packed__)) datalink_frame_obc_app_ekf_data
 typedef struct __attribute__((__packed__)) datalink_frame_data_saved_chunk
 {
     uint16_t dt;
-    float accX;
-    float accY;
-    float accZ;
+    float accRawX;
+    float accRawY;
+    float accRawZ;
+    float gyroRawX;
+    float gyroRawY;
+    float gyroRawZ;
+    float magRawX;
+    float magRawY;
+    float magRawZ;
+    double lat;
+    double lon;
+    double alt;
+    uint8_t gpsData;
+    int pressure;
+    float accN;
+    float accE;
+    float accD;
     float velN;
     float velE;
     float velD;
@@ -157,22 +171,31 @@ typedef struct __attribute__((__packed__)) datalink_frame_data_saved_chunk
     float qx;
     float qy;
     float qz;
-    double lat;
-    double lon;
-    double alt;
-    int pressure;
     uint8_t smState;
     uint16_t batteryVoltage100;
     uint8_t ignFlags;
-    uint8_t gpsData;
 } datalink_frame_data_saved_chunk_t;
 
 typedef struct __attribute__((__packed__)) datalink_frame_data_acs_saved_chunk
 {
     uint16_t dt;
-    float accX;
-    float accY;
-    float accZ;
+    float accRawX;
+    float accRawY;
+    float accRawZ;
+    float gyroRawX;
+    float gyroRawY;
+    float gyroRawZ;
+    float magRawX;
+    float magRawY;
+    float magRawZ;
+    double lat;
+    double lon;
+    double alt;
+    uint8_t gpsData;
+    int pressure;
+    float accN;
+    float accE;
+    float accD;
     float velN;
     float velE;
     float velD;
@@ -183,16 +206,11 @@ typedef struct __attribute__((__packed__)) datalink_frame_data_acs_saved_chunk
     float qx;
     float qy;
     float qz;
-    double lat;
-    double lon;
-    double alt;
-    int pressure;
+    uint8_t smState;
+    uint16_t batteryVoltage100;
     int16_t angleSetpoint10;
     int16_t pidRoll10;
     int8_t pidOutputAngle10;
-    uint8_t smState;
-    uint16_t batteryVoltage100;
-    uint8_t gpsData;
 } datalink_frame_data_acs_saved_chunk_t;
 
 typedef struct __attribute__((__packed__)) datalink_frame_data_saved_size
