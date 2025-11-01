@@ -47,16 +47,28 @@ typedef enum datalink_options_sm_state
     DATALINK_OPTIONS_SM_STATE_LANDED = 4,
 } datalink_options_sm_state_t;
 
+typedef enum datalink_flags_telemetry_data_ign_flags
+{
+    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_IGN_1_CONT = 1 << 0,
+    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_IGN_2_CONT = 1 << 1,
+    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_IGN_3_CONT = 1 << 2,
+    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_IGN_4_CONT = 1 << 3,
+    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_IGN_1_RES_FIRE = 1 << 4,
+    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_IGN_2_RES_FIRE = 1 << 5,
+    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_IGN_3_RES_FIRE = 1 << 6,
+    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_IGN_4_RES_FIRE = 1 << 7,
+} datalink_flags_telemetry_data_ign_flags;
+
 typedef enum datalink_flags_telemetry_data_control_flags
 {
     DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_ARM_ENABLED = 1 << 0,
     DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_3V3_ENABLED = 1 << 1,
     DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_5V_ENABLED = 1 << 2,
     DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_VBAT_ENABLED = 1 << 3,
-    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_IGN_1 = 1 << 4,
-    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_IGN_2 = 1 << 5,
-    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_IGN_3 = 1 << 6,
-    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_IGN_4 = 1 << 7,
+    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_RESERVED_1 = 1 << 4,
+    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_RESERVED_2 = 1 << 5,
+    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_RESERVED_3 = 1 << 6,
+    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_RESERVED_4 = 1 << 7,
 } datalink_flags_telemetry_data_control_flags_t;
 
 typedef enum datalink_flags_telemetry_response_control_flags
@@ -65,6 +77,10 @@ typedef enum datalink_flags_telemetry_response_control_flags
     DATALINK_FLAGS_TELEMETRY_RESPONSE_CONTROL_3V3_ENABLED = 1 << 1,
     DATALINK_FLAGS_TELEMETRY_RESPONSE_CONTROL_5V_ENABLED = 1 << 2,
     DATALINK_FLAGS_TELEMETRY_RESPONSE_CONTROL_VBAT_ENABLED = 1 << 3,
+    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_IGN_1_REQ_FIRE = 1 << 4,
+    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_IGN_2_REQ_FIRE = 1 << 5,
+    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_IGN_3_REQ_FIRE = 1 << 6,
+    DATALINK_FLAGS_TELEMETRY_DATA_CONTROL_IGN_4_REQ_FIRE = 1 << 7,
 } datalink_flags_telemetry_response_control_flags_t;
 
 typedef enum datalink_flags_ign
@@ -93,6 +109,7 @@ typedef struct __attribute__((__packed__)) datalink_frame_telemetry_data_obc
     uint16_t alt;
     uint8_t gpsData;
     uint8_t state;
+    uint8_t ignFlags;
     uint8_t controlFlags;
 } datalink_frame_telemetry_data_obc_t;
 
@@ -112,6 +129,7 @@ typedef struct __attribute__((__packed__)) datalink_frame_telemetry_data_gcs
     int gcsLon;
     uint8_t gpsData;
     uint8_t state;
+    uint8_t ignFlags;
     uint8_t controlFlags;
     uint8_t signalStrengthNeg;
     uint8_t packetLossPercentage;
@@ -121,7 +139,7 @@ typedef struct __attribute__((__packed__)) datalink_frame_telemetry_data_gcs
 
 typedef struct __attribute__((__packed__)) datalink_frame_telemetry_response
 {
-    uint8_t controlFlags;
+    uint8_t flags;
 } datalink_frame_telemetry_response_t;
 
 typedef struct __attribute__((__packed__)) datalink_frame_obc_app_ekf_data
