@@ -258,12 +258,17 @@ typedef struct __attribute__((__packed__)) datalink_frame_config_set
     uint8_t malfunctionSpeed;
 } datalink_frame_config_set_t;
 
-typedef struct datalink_frame_structure_serial
+typedef struct datalink_frame_data
 {
-    uint8_t magic_serial;
     uint8_t msgId;
     uint8_t len;
     uint8_t payload[255];
+} datalink_frame_data_t;
+
+typedef struct datalink_frame_structure_serial
+{
+    uint8_t magic_serial;
+    datalink_frame_data_t data;
     uint16_t crc;
 } datalink_frame_structure_serial_t;
 
@@ -273,9 +278,7 @@ typedef struct datalink_frame_structure_radio
     uint8_t seq;
     uint8_t srcId;
     uint8_t destId;
-    uint8_t msgId;
-    uint8_t len;
-    uint8_t payload[255];
+    datalink_frame_data_t data;
     uint16_t crc;
 } datalink_frame_structure_radio_t;
 
