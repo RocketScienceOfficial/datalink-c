@@ -282,8 +282,10 @@ typedef struct datalink_frame_structure_radio
     uint16_t crc;
 } datalink_frame_structure_radio_t;
 
+int datalink_serialize_frame_data(const datalink_frame_data_t *data, uint8_t *buffer, int *len);
 int datalink_serialize_frame_serial(const datalink_frame_structure_serial_t *frame, uint8_t *buffer, int *len);
 int datalink_serialize_frame_radio(const datalink_frame_structure_radio_t *frame, uint8_t *buffer, int *len);
+int datalink_deserialize_frame_data(datalink_frame_data_t *data, const uint8_t *buffer, int len);
 int datalink_deserialize_frame_serial(datalink_frame_structure_serial_t *frame, const uint8_t *buffer, int len);
 int datalink_deserialize_frame_radio(datalink_frame_structure_radio_t *frame, const uint8_t *buffer, int len);
 

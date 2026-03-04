@@ -5,6 +5,32 @@ static int _safe_copy(uint8_t *buffer, int *bufferOffset, int bufferLen, const u
 static uint16_t _crc16_ccitt_calculate(const uint8_t *data, int length);
 static uint16_t _crc16_mcrf4xx_calculate(const uint8_t *data, int length);
 
+int datalink_serialize_frame_data(const datalink_frame_data_t *data, uint8_t *buffer, int *len)
+{
+    int bufferOffset = 0;
+
+    if (*len >= 2)
+    {
+        buffer[0] = data->msgId;
+        buffer[1] = data->len;
+
+        bufferOffset += 2;
+    }
+    else
+    {
+        return 0;
+    }
+
+    if (!_safe_copy(buffer, &bufferOffset, *len, data->payload, data->len))
+    {
+        return 0;
+    }
+
+    *len = bufferOffset;
+
+    return 1;
+}
+
 int datalink_serialize_frame_serial(const datalink_frame_structure_serial_t *frame, uint8_t *buffer, int *len)
 {
     const datalink_frame_data_t *data = &frame->data;
@@ -74,6 +100,35 @@ int datalink_serialize_frame_radio(const datalink_frame_structure_radio_t *frame
     }
 
     *len = bufferOffset;
+
+    return 1;
+}
+
+int datalink_deserialize_frame_data(datalink_frame_data_t *data, const uint8_t *buffer, int len)
+{
+    if (len < 2)
+    {
+        return 0;
+    }
+
+    data->msgId = buffer[0];
+
+    if (data->msgId >= DATALINK_MESSAGE_NONE)
+    {
+        return 0;
+    }
+
+    data->len = buffer[1];
+
+    if (data->len != len - 2)
+    {
+        return 0;
+    }
+
+    if (data->len > 0)
+    {
+        memcpy(data->payload, buffer + 2, data->len);
+    }
 
     return 1;
 }
