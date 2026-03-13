@@ -7,9 +7,6 @@ extern "C" {
 
 #include <stdint.h>
 
-#define DATALINK_MAGIC_SERIAL 0x7E
-#define DATALINK_MAGIC_RADIO 0x5A
-
 typedef enum datalink_message_type
 {
     DATALINK_MESSAGE_TELEMETRY_DATA_OBC,
@@ -30,10 +27,6 @@ typedef enum datalink_message_type
     DATALINK_MESSAGE_DATA_FINISH_RECOVERY,
     DATALINK_MESSAGE_IGN_REQUEST_TEST,
     DATALINK_MESSAGE_IGN_FINISH_TEST,
-    DATALINK_MESSAGE_CONFIG_GET,
-    DATALINK_MESSAGE_CONFIG_GET_ACK,
-    DATALINK_MESSAGE_CONFIG_SET,
-    DATALINK_MESSAGE_CONFIG_SET_ACK,
     DATALINK_MESSAGE_RADIO_MODULE_TX_DONE,
     DATALINK_MESSAGE_NONE,
 } datalink_message_type_t;
@@ -246,24 +239,18 @@ typedef struct __attribute__((__packed__)) datalink_frame_ign_request_test
     uint8_t ignNum;
 } datalink_frame_ign_request_test_t;
 
-typedef struct __attribute__((__packed__)) datalink_frame_config_get
-{
-    uint16_t mainHeight;
-    uint8_t malfunctionSpeed;
-} datalink_frame_config_get_t;
 
-typedef struct __attribute__((__packed__)) datalink_frame_config_set
-{
-    uint16_t mainHeight;
-    uint8_t malfunctionSpeed;
-} datalink_frame_config_set_t;
+#define DATALINK_MAX_PAYLOAD_SIZE 254
 
 typedef struct datalink_frame_data
 {
     uint8_t msgId;
     uint8_t len;
-    uint8_t payload[255];
+    uint8_t payload[DATALINK_MAX_PAYLOAD_SIZE];
 } datalink_frame_data_t;
+
+
+#define DATALINK_MAGIC_SERIAL 0x7E
 
 typedef struct datalink_frame_structure_serial
 {
@@ -271,6 +258,9 @@ typedef struct datalink_frame_structure_serial
     datalink_frame_data_t data;
     uint16_t crc;
 } datalink_frame_structure_serial_t;
+
+
+#define DATALINK_MAGIC_RADIO 0x5A
 
 typedef struct datalink_frame_structure_radio
 {
@@ -281,6 +271,7 @@ typedef struct datalink_frame_structure_radio
     datalink_frame_data_t data;
     uint16_t crc;
 } datalink_frame_structure_radio_t;
+
 
 int datalink_serialize_frame_data(const datalink_frame_data_t *data, uint8_t *buffer, int *len);
 int datalink_serialize_frame_serial(const datalink_frame_structure_serial_t *frame, uint8_t *buffer, int *len);

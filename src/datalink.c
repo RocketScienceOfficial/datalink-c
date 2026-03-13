@@ -7,6 +7,11 @@ static uint16_t _crc16_mcrf4xx_calculate(const uint8_t *data, int length);
 
 int datalink_serialize_frame_data(const datalink_frame_data_t *data, uint8_t *buffer, int *len)
 {
+    if (data->msgId >= DATALINK_MESSAGE_NONE || data->len > DATALINK_MAX_PAYLOAD_SIZE)
+    {
+        return 0;
+    }
+
     int bufferOffset = 0;
 
     if (*len >= 2)
@@ -34,6 +39,12 @@ int datalink_serialize_frame_data(const datalink_frame_data_t *data, uint8_t *bu
 int datalink_serialize_frame_serial(const datalink_frame_structure_serial_t *frame, uint8_t *buffer, int *len)
 {
     const datalink_frame_data_t *data = &frame->data;
+
+    if (data->msgId >= DATALINK_MESSAGE_NONE || data->len > DATALINK_MAX_PAYLOAD_SIZE)
+    {
+        return 0;
+    }
+
     int bufferOffset = 0;
 
     if (*len >= 3)
@@ -69,6 +80,12 @@ int datalink_serialize_frame_serial(const datalink_frame_structure_serial_t *fra
 int datalink_serialize_frame_radio(const datalink_frame_structure_radio_t *frame, uint8_t *buffer, int *len)
 {
     const datalink_frame_data_t *data = &frame->data;
+
+    if (data->msgId >= DATALINK_MESSAGE_NONE || data->len > DATALINK_MAX_PAYLOAD_SIZE)
+    {
+        return 0;
+    }
+
     int bufferOffset = 0;
 
     if (*len >= 6)
@@ -120,7 +137,7 @@ int datalink_deserialize_frame_data(datalink_frame_data_t *data, const uint8_t *
 
     data->len = buffer[1];
 
-    if (data->len != len - 2)
+    if (data->len != len - 2 || data->len > DATALINK_MAX_PAYLOAD_SIZE)
     {
         return 0;
     }
@@ -168,7 +185,7 @@ int datalink_deserialize_frame_serial(datalink_frame_structure_serial_t *frame, 
 
     data->len = buffer[2];
 
-    if (data->len != len - 5)
+    if (data->len != len - 5 || data->len > DATALINK_MAX_PAYLOAD_SIZE)
     {
         return 0;
     }
@@ -217,7 +234,7 @@ int datalink_deserialize_frame_radio(datalink_frame_structure_radio_t *frame, co
 
     data->len = buffer[5];
 
-    if (data->len != len - 8)
+    if (data->len != len - 8 || data->len > DATALINK_MAX_PAYLOAD_SIZE)
     {
         return 0;
     }
